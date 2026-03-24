@@ -1,0 +1,18 @@
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  @include themify() {
+    background-color: t('bg-body');
+    color: t('text-main');
+  }
+}
+
+.card {
+  padding: 2rem;
+  border-radius: 8px;
+
+  @include themify() {
+    background-color: t('card-bg');
+    border: 1px solid t('border');
+  }
+}

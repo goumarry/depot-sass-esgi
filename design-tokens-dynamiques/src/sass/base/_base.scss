@@ -1,0 +1,12 @@
+body {
+  font-family: Arial, sans-serif;
+  background: color('bg-light');
+  margin: 0;
+}
+
+h1, h2 {
+  color: color('text-dark');
+}
+
+h1 { font-size: 24px; }
+h2 { font-size: 20px; }

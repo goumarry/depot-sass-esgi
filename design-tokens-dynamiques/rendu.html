@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr" class="theme-dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>html exo 1 2 3 4 5</title>
+
+    <link rel="stylesheet" href="src/css/style.css">
+
+    <style>
+        body { font-family: sans-serif; padding: 2rem; background-color: #f3f4f6; }
+        .section { margin-bottom: 2rem; background: white; padding: 1.5rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .flex-gap { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; margin-top: 1rem; }
+    </style>
+</head>
+<body>
+
+<h1>Démo du Système de Boutons (Défi 4)</h1>
+
+<div class="section">
+    <h2>1. Les Tailles (.btn-sm, .btn-md, .btn-lg)</h2>
+    <div class="flex-gap">
+        <button class="btn btn-sm btn-primary">Bouton Petit</button>
+        <button class="btn btn-md btn-primary">Bouton Moyen</button>
+        <button class="btn btn-lg btn-primary">Bouton Grand</button>
+    </div>
+</div>
+
+<div class="section">
+    <h2>2. Les Couleurs (Solid)</h2>
+    <div class="flex-gap">
+        <button class="btn btn-md btn-primary">Primary</button>
+        <button class="btn btn-md btn-secondary">Secondary</button>
+        <button class="btn btn-md btn-danger">Danger</button>
+        <button class="btn btn-md btn-dark">Dark</button>
+        <button class="btn btn-md btn-primary" disabled>Désactivé</button>
+    </div>
+</div>
+
+<div class="section">
+    <h2>3. Les Variantes (Outline)</h2>
+    <div class="flex-gap">
+        <button class="btn btn-md btn-outline-primary">Outline Primary</button>
+        <button class="btn btn-md btn-outline-secondary">Outline Secondary</button>
+        <button class="btn btn-md btn-outline-danger">Outline Danger</button>
+        <button class="btn btn-md btn-outline-dark">Outline Dark</button>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+@function color($name) {
+  @if map-has-key($colors, $name) {
+    @return map-get($colors, $name);
+  }
+
+  @warn "Attention : la couleur '#{$name}' n'existe pas dans la map $colors.";
+  @return null;
+}
+
+$theme-map: null;
+
+@function t($key) {
+  @return map-get($theme-map, $key);
+}

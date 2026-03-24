@@ -1,0 +1,23 @@
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+@for $i from 1 through $grid-columns {
+  .col-#{$i} {
+    width: percentage($i / $grid-columns);
+  }
+}
+
+@each $bp-name, $bp-value in $breakpoints {
+
+  @include respond-to($bp-name) {
+
+    @for $i from 1 through $grid-columns {
+      .col-#{$bp-name}-#{$i} {
+        width: percentage($i / $grid-columns);
+      }
+    }
+
+  }
+}

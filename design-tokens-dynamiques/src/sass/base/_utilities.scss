@@ -1,0 +1,88 @@
+@each $name, $hex in $colors {
+  .text-#{$name} {
+    color: $hex !important;
+  }
+
+  .bg-#{$name} {
+    background-color: $hex !important;
+  }
+}
+
+@each $prefix-name, $prop in $space-prefixes {
+  @each $dir-name, $dir-val in $space-directions {
+    @each $scale-name, $scale-val in $space-scale {
+
+      $class-name: ".#{$prefix-name}#{$dir-name}-#{$scale-name}";
+
+      @if $dir-name == '' {
+        .#{$prefix-name}-#{$scale-name} {
+          #{$prop}: $scale-val;
+        }
+      }
+
+      @else if $dir-name == 'x' {
+        #{$class-name} {
+          #{$prop}-left: $scale-val;
+          #{$prop}-right: $scale-val;
+        }
+      }
+
+      @else if $dir-name == 'y' {
+        #{$class-name} {
+          #{$prop}-top: $scale-val;
+          #{$prop}-bottom: $scale-val;
+        }
+      }
+
+      @else {
+        #{$class-name} {
+          #{$prop}-#{$dir-val}: $scale-val;
+        }
+      }
+
+    }
+  }
+}
+
+// DÉFI 7 : MINI-FRAMEWORK TAILWIND (FLEXBOX & DISPLAY)
+
+$displays: ('block', 'inline-block', 'flex', 'inline-flex', 'none');
+
+@each $disp in $displays {
+  @if $disp == 'none' {
+    .hidden { display: none !important; }
+  } @else {
+    .#{$disp} { display: #{$disp} !important; }
+  }
+}
+
+.flex-row { flex-direction: row !important; }
+.flex-col { flex-direction: column !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+
+$justify-options: (
+        'start': flex-start,
+        'end': flex-end,
+        'center': center,
+        'between': space-between,
+        'around': space-around
+);
+
+@each $name, $val in $justify-options {
+  .justify-#{$name} { justify-content: $val !important; }
+}
+
+$align-options: (
+        'start': flex-start,
+        'end': flex-end,
+        'center': center,
+        'stretch': stretch
+);
+
+@each $name, $val in $align-options {
+  .items-#{$name} { align-items: $val !important; }
+}
+
+@each $scale-name, $scale-val in $space-scale {
+  .gap-#{$scale-name} { gap: $scale-val !important; }
+}

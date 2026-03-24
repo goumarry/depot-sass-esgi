@@ -1,0 +1,23 @@
+@mixin respond-to($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  } @else {
+    @warn "Le breakpoint `#{$breakpoint}` n'existe pas.";
+  }
+}
+
+@mixin themify() {
+  @each $theme-name, $theme-colors in $themes {
+
+    .theme-#{$theme-name} & {
+      $theme-map: $theme-colors !global;
+
+      @content;
+
+      $theme-map: null !global;
+    }
+
+  }
+}
