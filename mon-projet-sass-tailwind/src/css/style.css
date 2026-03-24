@@ -1,0 +1,97 @@
+.btn-gradient-interactive {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 3rem;
+  background: #111;
+  color: #fff;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  overflow: visible;
+  z-index: 1;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+.btn-gradient-interactive .btn-icon {
+  width: 30px;
+  height: 30px;
+  margin-left: 1rem;
+  fill: #fff;
+  transition: transform 1s ease, fill 0.5s ease;
+}
+.btn-gradient-interactive::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, #ff00ea, #00ffea, #ffea00, #ff00ea);
+  background-size: 400%;
+  border-radius: 50px;
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  animation: glowProfile 8s linear infinite;
+}
+.btn-gradient-interactive::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  z-index: -2;
+}
+.btn-gradient-interactive:hover {
+  transform: scale(2.5) rotate(360deg) translateY(-10px);
+  color: #111;
+  background: #fff;
+  box-shadow: 0 0 20px rgba(0, 255, 234, 0.8), 0 0 40px rgba(255, 0, 234, 0.8), 0 0 60px rgba(255, 234, 0, 0.8);
+}
+.btn-gradient-interactive:hover::before {
+  opacity: 1;
+  filter: blur(20px);
+}
+.btn-gradient-interactive:hover::after {
+  animation: shockwave 0.8s ease-out;
+}
+.btn-gradient-interactive:hover .btn-icon {
+  fill: #111;
+  transform: scale(1.3) rotate(-360deg);
+}
+
+@keyframes glowProfile {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes shockwave {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(10);
+    opacity: 0;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

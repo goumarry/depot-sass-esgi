@@ -1,0 +1,130 @@
+// ==========================================================================
+// Composant : Le Bouton Totalement Délirant (Sass Power)
+// ==========================================================================
+
+.btn-gradient-interactive {
+  // --- 1. Base du Bouton ---
+  position: relative; // Obligatoire pour les pseudo-éléments
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 3rem;
+  background: #111; // Fond sombre pour faire ressortir les effets
+  color: #fff;
+  font-family: 'Courier New', Courier, monospace; // Police "code" pour le style
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 50px; // Très arrondi
+  cursor: pointer;
+  overflow: visible; // Pour laisser déborder les effets
+  z-index: 1;
+
+  // Transition super fluide et "elastic" pour le retour au calme
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+  // --- 2. L'Icône (tourne déjà) ---
+  .btn-icon {
+    width: 30px;
+    height: 30px;
+    margin-left: 1rem;
+    fill: #fff;
+    transition: transform 1s ease, fill 0.5s ease;
+  }
+
+  // --- 3. L'Effet "Néon Glow" (Pseudo-élément ::before) ---
+  // Crée un clone flouté derrière le bouton pour l'effet de lumière
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff00ea, #00ffea, #ffea00, #ff00ea);
+    background-size: 400%; // Pour l'animation du dégradé
+    border-radius: 50px;
+    z-index: -1; // Derrière le bouton
+    filter: blur(10px); // Flou magique
+    opacity: 0; // Invisible par défaut
+    transition: opacity 0.5s ease;
+
+    // Animation du dégradé néon
+    animation: glowProfile 8s linear infinite;
+  }
+
+  // --- 4. L'Effet "Onde de Choc" (Pseudo-élément ::after) ---
+  // Crée un cercle qui s'étend
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    z-index: -2;
+  }
+
+
+  // ==========================================================================
+  // L'ÉTAT HOVER : L'EXPLOSION LOUFOQUE !!!
+  // ==========================================================================
+
+  &:hover {
+    // --- A. Transformation du Bouton ---
+    // Devient IMMENSE, tourne (360°), et se décale légèrement (Wobble)
+    transform: scale(2.5) rotate(360deg) translateY(-10px);
+    color: #111; // Le texte devient sombre
+    background: #fff; // Le fond devient blanc
+    box-shadow:
+            0 0 20px rgba(0, 255, 234, 0.8), // Ombre cyan
+            0 0 40px rgba(255, 0, 234, 0.8), // Ombre magenta
+            0 0 60px rgba(255, 234, 0, 0.8); // Ombre jaune
+
+    // --- B. Activation du Néon Glow (::before) ---
+    &::before {
+      opacity: 1; // Devient visible
+      filter: blur(20px); // Flou plus intense
+    }
+
+    // --- C. Déclenchement de l'Onde de Choc (::after) ---
+    &::after {
+      animation: shockwave 0.8s ease-out; // Animation unique au hover
+    }
+
+    // --- D. L'Icône ---
+    .btn-icon {
+      fill: #111; // Devient sombre
+      transform: scale(1.3) rotate(-360deg); // Tourne dans l'autre sens et grossit
+    }
+  }
+}
+
+// ==========================================================================
+// KEYFRAMES (Les Animations Sass)
+// ==========================================================================
+
+// 1. Animation du dégradé néon (::before)
+@keyframes glowProfile {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+// 2. Animation de l'onde de choc (::after)
+@keyframes shockwave {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(10); // S'étend énormément
+    opacity: 0; // Disparaît
+  }
+}
