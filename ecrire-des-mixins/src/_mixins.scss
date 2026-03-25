@@ -1,0 +1,40 @@
+@mixin button-responsive(
+  $bg-color,
+  $text-color,
+  $hover-bg-color,
+  $hover-text-color,
+  $border-radius,
+  $padding-y-base,
+  $padding-x-base,
+  $font-size-base
+) {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  background-color: $bg-color;
+  color: $text-color;
+  border: none;
+  border-radius: $border-radius;
+
+  padding: $padding-y-base $padding-x-base;
+  font-size: $font-size-base;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: $hover-bg-color;
+    color: $hover-text-color;
+    transform: translateY(-2px);
+  }
+
+  @media (min-width: $breakpoint-md) {
+    display: inline-flex;
+    width: auto;
+    padding: ($padding-y-base * 1.2) ($padding-x-base * 1.2);
+    font-size: ($font-size-base * 1.1);
+  }
+}
