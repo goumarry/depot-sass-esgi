@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plugin Tailwind : Table Triable</title>
+    <link href="style.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-8">
+
+<div class="max-w-4xl mx-auto space-y-8">
+    <h1 class="text-3xl font-bold text-gray-800">Test du Plugin Sortable Table</h1>
+
+    <div class="bg-white rounded-lg shadow overflow-x-auto"> <table class="tw-table-sortable min-w-full text-left border-collapse">
+        <thead class="bg-gray-50 border-b-2 border-gray-200">
+        <tr>
+            <th data-key="name" class="p-3 font-semibold text-gray-600">Nom (String)</th>
+            <th data-key="age" class="p-3 font-semibold text-gray-600">Âge (Number)</th>
+            <th data-key="city" class="p-3 font-semibold text-gray-600">Ville (String)</th>
+        </tr>
+        </thead>
+        <tbody id="users-tbody">
+        </tbody>
+    </table>
+    </div>
+
+    <div class="bg-white rounded-lg shadow overflow-x-auto">
+        <table class="tw-table-sortable min-w-full text-left border-collapse">
+            <thead class="bg-gray-50 border-b-2 border-gray-200">
+            <tr>
+                <th data-key="id" class="p-3 font-semibold text-gray-600">Réf (Number)</th>
+                <th data-key="product" class="p-3 font-semibold text-gray-600">Produit (String)</th>
+                <th data-key="price" class="p-3 font-semibold text-gray-600">Prix € (Number)</th>
+            </tr>
+            </thead>
+            <tbody id="products-tbody">
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="data.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
