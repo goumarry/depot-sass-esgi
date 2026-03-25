@@ -12,7 +12,7 @@ plugins: [require('./plugins/sortableTable')]
 
 4. Ajouter l'attribut `data-key="nom_colonne"` sur chaque balise `<th>` qu'on veut rendre triable.
 
-
+```
 <table class="tw-table-sortable">
   <thead>
     <tr>
@@ -23,6 +23,7 @@ plugins: [require('./plugins/sortableTable')]
   <tbody>
     </tbody>
 </table>
+```
 
 4. Initialiser le script JS inclus dans le projet.
 
