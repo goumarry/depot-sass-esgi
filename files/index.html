@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LOOM — Donnez vie à vos projets</title>
+  <link href="./dist/output.css" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+
+<body class="bg-[#07070f] text-slate-200 antialiased overflow-x-hidden">
+
+  <!-- BACKGROUND DECORATIF -->
+  <div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+    <div class="absolute -top-60 -right-60 w-[700px] h-[700px] bg-amber-500/[0.08] rounded-full blur-[140px]"></div>
+    <div class="absolute top-1/2 -left-60 w-[500px] h-[500px] bg-amber-600/[0.05] rounded-full blur-[120px]"></div>
+    <div class="absolute -bottom-40 right-1/4 w-[400px] h-[400px] bg-violet-600/[0.05] rounded-full blur-[100px]"></div>
+    <svg class="absolute inset-0 w-full h-full opacity-[0.025]" xmlns="http://www.w3.org/2000/svg">
+      <filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter>
+      <rect width="100%" height="100%" filter="url(#noise)"/>
+    </svg>
+  </div>
+
+  <!-- HEADER -->
+  <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="flex items-center justify-between h-[68px]">
+        <a href="#" class="font-display text-[1.6rem] font-semibold tracking-tighter text-amber-400 hover:text-amber-300 transition-colors select-none">LOOM</a>
+        <nav class="hidden md:flex items-center gap-8">
+          <a href="#fonctionnalites" class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Fonctionnalités</a>
+          <a href="#tarifs"          class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Tarifs</a>
+          <a href="#a-propos"        class="text-sm font-medium text-slate-400 hover:text-white transition-colors">À propos</a>
+          <a href="#blog"            class="text-sm font-medium text-slate-400 hover:text-white transition-colors">Blog</a>
+        </nav>
+        <div class="flex items-center gap-3">
+          <a href="#" class="hidden md:inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-900 text-sm font-semibold px-5 py-2.5 rounded-full transition-all duration-200 hover:-translate-y-px shadow-md shadow-amber-400/20">Essai gratuit</a>
+          <button id="hamburger" class="md:hidden relative w-10 h-10 flex flex-col justify-center items-center gap-[5px] rounded-xl hover:bg-white/5 transition-colors" aria-label="Menu">
+            <span id="bar1" class="w-5 h-0.5 bg-slate-300 rounded-full transition-all duration-300 origin-center"></span>
+            <span id="bar2" class="w-5 h-0.5 bg-slate-300 rounded-full transition-all duration-300"></span>
+            <span id="bar3" class="w-5 h-0.5 bg-slate-300 rounded-full transition-all duration-300 origin-center"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden border-t border-white/5 bg-[#07070f]/98 backdrop-blur-2xl">
+      <nav class="flex flex-col max-w-7xl mx-auto px-5 py-3 gap-0.5">
+        <a href="#fonctionnalites" class="text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-xl px-4 py-3 transition-all">Fonctionnalités</a>
+        <a href="#tarifs"          class="text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-xl px-4 py-3 transition-all">Tarifs</a>
+        <a href="#a-propos"        class="text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-xl px-4 py-3 transition-all">À propos</a>
+        <a href="#blog"            class="text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 rounded-xl px-4 py-3 transition-all">Blog</a>
+        <div class="border-t border-white/5 mt-2 pt-3">
+          <a href="#" class="flex justify-center bg-amber-400 hover:bg-amber-300 text-slate-900 text-sm font-semibold px-5 py-3 rounded-full transition-colors">Essai gratuit — 14 jours</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="relative min-h-screen flex items-center pt-[68px]">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 w-full">
+      <div class="grid lg:grid-cols-2 gap-12 xl:gap-20 items-center py-20 sm:py-28 lg:py-32">
+        <div class="space-y-7 opacity-0 animate-fade-up" style="animation-delay:0.1s">
+          <div class="inline-flex items-center gap-2.5 bg-amber-400/10 border border-amber-400/25 text-amber-400 text-xs font-semibold px-4 py-2 rounded-full">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse flex-shrink-0"></span>
+            Nouveau — Loom 2.0 est disponible
+          </div>
+          <h1 class="font-display text-[3.2rem] sm:text-[4rem] lg:text-[4.8rem] xl:text-[5.4rem] font-light leading-[1.07] tracking-tight text-white">
+            Donnez vie à<br><em class="not-italic font-semibold text-amber-400">vos projets.</em>
+          </h1>
+          <p class="text-base sm:text-lg text-slate-400 max-w-md leading-relaxed">
+            Loom réunit votre équipe créative autour d'un espace de travail visuel, collaboratif et intelligent. Fini les silos — place à la fluidité.
+          </p>
+          <div class="flex flex-wrap gap-3 pt-1">
+            <a href="#" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-900 font-semibold text-sm px-7 py-4 rounded-full transition-all duration-200 shadow-lg shadow-amber-400/25 hover:shadow-amber-400/45 hover:-translate-y-0.5">
+              Commencer gratuitement
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+            <a href="#" class="inline-flex items-center gap-2 border border-white/[0.12] hover:border-white/25 bg-white/[0.03] hover:bg-white/[0.06] text-slate-300 hover:text-white font-medium text-sm px-7 py-4 rounded-full transition-all duration-200">
+              <svg class="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              Voir la démo
+            </a>
+          </div>
+          <div class="flex items-center gap-4 pt-1">
+            <div class="flex -space-x-2.5">
+              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-violet-400 to-purple-600 border-2 border-[#07070f] flex items-center justify-center text-[11px] font-bold text-white">A</div>
+              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 border-2 border-[#07070f] flex items-center justify-center text-[11px] font-bold text-white">M</div>
+              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-teal-400 to-cyan-600 border-2 border-[#07070f] flex items-center justify-center text-[11px] font-bold text-white">S</div>
+              <div class="w-9 h-9 rounded-full bg-gradient-to-br from-pink-400 to-rose-600 border-2 border-[#07070f] flex items-center justify-center text-[11px] font-bold text-white">L</div>
+              <div class="w-9 h-9 rounded-full bg-slate-700 border-2 border-[#07070f] flex items-center justify-center text-[10px] font-semibold text-slate-300">+9k</div>
+            </div>
+            <p class="text-sm text-slate-400"><span class="text-white font-medium">10 000+</span> équipes créatives nous font confiance</p>
+          </div>
+        </div>
+
+        <!-- Visuel app -->
+        <div class="relative opacity-0 animate-fade-up" style="animation-delay:0.3s">
+          <div class="relative bg-slate-900/60 border border-white/[0.08] rounded-2xl overflow-hidden backdrop-blur-md shadow-[0_40px_100px_rgba(0,0,0,0.6)]">
+            <div class="flex items-center gap-2 px-4 py-3 bg-slate-800/60 border-b border-white/5">
+              <div class="w-3 h-3 rounded-full bg-red-500/70"></div>
+              <div class="w-3 h-3 rounded-full bg-yellow-500/70"></div>
+              <div class="w-3 h-3 rounded-full bg-green-500/70"></div>
+              <div class="ml-4 flex-1 bg-slate-700/50 rounded-md px-3 py-1 text-xs text-slate-500 font-mono truncate">loom.app — Projet Alpha Q4</div>
+            </div>
+            <div class="p-5">
+              <div class="flex items-center justify-between mb-5">
+                <div>
+                  <h3 class="font-semibold text-slate-200 text-sm">Sprint actuel</h3>
+                  <p class="text-xs text-slate-500 mt-0.5">Semaine 14 · 8 tâches</p>
+                </div>
+                <span class="text-xs text-amber-400 bg-amber-400/10 border border-amber-400/20 px-2.5 py-1 rounded-full">En cours</span>
+              </div>
+              <div class="grid grid-cols-3 gap-3">
+                <div class="space-y-2">
+                  <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">À faire</p>
+                  <div class="bg-slate-800/80 rounded-xl p-3 border border-white/5">
+                    <p class="text-xs text-slate-300 leading-snug">Design system tokens</p>
+                    <div class="mt-2.5 flex items-center justify-between">
+                      <div class="w-6 h-6 rounded-full bg-gradient-to-br from-violet-400 to-purple-600 flex items-center justify-center text-[9px] font-bold text-white">A</div>
+                      <div class="text-[9px] text-slate-600">Lun.</div>
+                    </div>
+                  </div>
+                  <div class="bg-slate-800/80 rounded-xl p-3 border border-white/5">
+                    <p class="text-xs text-slate-300 leading-snug">API webhooks</p>
+                    <div class="mt-2.5 w-6 h-6 rounded-full bg-gradient-to-br from-teal-400 to-cyan-600 flex items-center justify-center text-[9px] font-bold text-white">S</div>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">En cours</p>
+                  <div class="bg-slate-800/80 rounded-xl p-3 border border-amber-400/25 shadow-sm shadow-amber-400/5">
+                    <p class="text-xs text-slate-200 leading-snug font-medium">Landing page v2</p>
+                    <div class="mt-2.5 flex items-center justify-between">
+                      <div class="w-6 h-6 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-[9px] font-bold text-white">M</div>
+                      <div class="flex gap-0.5 items-center">
+                        <div class="w-7 h-1 rounded-full bg-amber-400/70"></div>
+                        <div class="w-4 h-1 rounded-full bg-slate-700"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="bg-slate-800/80 rounded-xl p-3 border border-white/5">
+                    <p class="text-xs text-slate-300 leading-snug">Tests unitaires</p>
+                    <div class="mt-2.5 w-6 h-6 rounded-full bg-gradient-to-br from-pink-400 to-rose-600 flex items-center justify-center text-[9px] font-bold text-white">L</div>
+                  </div>
+                </div>
+                <div class="space-y-2">
+                  <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-2">Terminé</p>
+                  <div class="bg-slate-800/40 rounded-xl p-3 border border-white/5 opacity-55">
+                    <p class="text-xs text-slate-400 line-through leading-snug">Maquettes Figma</p>
+                    <div class="mt-2.5 flex items-center gap-1">
+                      <svg class="w-3 h-3 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                      <span class="text-[9px] text-green-400 font-medium">Livré</span>
+                    </div>
+                  </div>
+                  <div class="bg-slate-800/40 rounded-xl p-3 border border-white/5 opacity-55">
+                    <p class="text-xs text-slate-400 line-through leading-snug">User research</p>
+                    <div class="mt-2.5 flex items-center gap-1">
+                      <svg class="w-3 h-3 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                      <span class="text-[9px] text-green-400 font-medium">Livré</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="absolute -bottom-5 -left-5 animate-float bg-slate-900 border border-white/10 rounded-2xl p-3.5 shadow-2xl flex items-center gap-3 backdrop-blur-sm">
+            <div class="w-9 h-9 rounded-full bg-gradient-to-br from-teal-400 to-cyan-600 flex items-center justify-center text-xs font-bold text-white flex-shrink-0">S</div>
+            <div>
+              <p class="text-xs font-semibold text-slate-200">Sophie a commenté</p>
+              <p class="text-[11px] text-slate-500 mt-0.5">Landing page v2 · il y a 2 min</p>
+            </div>
+          </div>
+          <div class="absolute -top-5 -right-5 animate-float-slow bg-slate-900 border border-white/10 rounded-2xl p-4 shadow-2xl backdrop-blur-sm min-w-[120px]">
+            <p class="text-[11px] text-slate-500 mb-1 font-medium">Vélocité d'équipe</p>
+            <p class="font-display text-3xl font-semibold text-amber-400 leading-none">+34%</p>
+            <div class="flex items-center gap-1 mt-2">
+              <svg class="w-3 h-3 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M7 14l5-5 5 5H7z"/></svg>
+              <span class="text-[10px] text-green-400 font-semibold">ce mois</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FONCTIONNALITES -->
+  <section id="fonctionnalites" class="py-24 lg:py-36">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="border-t border-white/5 pt-20 lg:pt-28">
+        <div class="max-w-2xl mb-16 lg:mb-20">
+          <p class="text-amber-400 text-xs font-bold uppercase tracking-[0.2em] mb-5">Fonctionnalités</p>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-[3.8rem] font-light text-white leading-[1.1] tracking-tight">
+            Tout ce dont votre<br>équipe a <em class="not-italic font-semibold">besoin.</em>
+          </h2>
+          <p class="mt-6 text-slate-400 text-base sm:text-lg leading-relaxed">
+            Un espace de travail pensé pour les équipes modernes qui veulent avancer vite sans sacrifier la qualité ni la clarté.
+          </p>
+        </div>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          <div class="group relative bg-slate-900/30 hover:bg-slate-900/60 border border-white/5 hover:border-amber-400/20 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-400/5">
+            <div class="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center mb-6 group-hover:bg-amber-400/15 transition-colors">
+              <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"/></svg>
+            </div>
+            <h3 class="font-semibold text-white text-base lg:text-lg mb-3">Workflows visuels</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Kanban, Gantt, timeline — visualisez votre travail dans le format qui vous convient. Glissez, déposez, avancez sans friction.</p>
+            <div class="mt-6 flex items-center gap-2 text-amber-400 text-sm font-medium opacity-0 group-hover:opacity-100 -translate-x-1.5 group-hover:translate-x-0 transition-all duration-300">
+              Découvrir <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </div>
+          </div>
+          <div class="group relative bg-slate-900/30 hover:bg-slate-900/60 border border-white/5 hover:border-amber-400/20 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-400/5">
+            <div class="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center mb-6 group-hover:bg-amber-400/15 transition-colors">
+              <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+            </div>
+            <h3 class="font-semibold text-white text-base lg:text-lg mb-3">Collaboration temps réel</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">Curseurs live, commentaires contextuels, historique complet — toute votre équipe synchronisée, partout dans le monde.</p>
+            <div class="mt-6 flex items-center gap-2 text-amber-400 text-sm font-medium opacity-0 group-hover:opacity-100 -translate-x-1.5 group-hover:translate-x-0 transition-all duration-300">
+              Découvrir <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </div>
+          </div>
+          <div class="group relative bg-slate-900/30 hover:bg-slate-900/60 border border-white/5 hover:border-amber-400/20 rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-400/5">
+            <div class="w-12 h-12 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center mb-6 group-hover:bg-amber-400/15 transition-colors">
+              <svg class="w-6 h-6 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            </div>
+            <h3 class="font-semibold text-white text-base lg:text-lg mb-3">Insights intelligents</h3>
+            <p class="text-slate-400 text-sm leading-relaxed">L'IA de Loom analyse vos patterns de travail et optimise votre flux. Des décisions basées sur la donnée, pas l'intuition.</p>
+            <div class="mt-6 flex items-center gap-2 text-amber-400 text-sm font-medium opacity-0 group-hover:opacity-100 -translate-x-1.5 group-hover:translate-x-0 transition-all duration-300">
+              Découvrir <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </div>
+          </div>
+        </div>
+        <div class="mt-16 lg:mt-20 grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/5 border border-white/5 rounded-2xl overflow-hidden">
+          <div class="px-8 py-8 hover:bg-white/[0.02] transition-colors">
+            <p class="font-display text-4xl lg:text-5xl font-semibold text-white">10k<span class="text-amber-400">+</span></p>
+            <p class="mt-2 text-sm text-slate-500">équipes créatives dans le monde</p>
+          </div>
+          <div class="px-8 py-8 hover:bg-white/[0.02] transition-colors">
+            <p class="font-display text-4xl lg:text-5xl font-semibold text-white">99.9<span class="text-amber-400">%</span></p>
+            <p class="mt-2 text-sm text-slate-500">uptime garanti contractuellement</p>
+          </div>
+          <div class="px-8 py-8 hover:bg-white/[0.02] transition-colors">
+            <p class="font-display text-4xl lg:text-5xl font-semibold text-white">4.9<span class="text-amber-400">★</span></p>
+            <p class="mt-2 text-sm text-slate-500">note moyenne sur G2 et Capterra</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 lg:py-28" id="tarifs">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="relative bg-gradient-to-br from-slate-900/80 to-slate-800/30 border border-amber-400/15 rounded-3xl overflow-hidden px-8 py-16 sm:px-12 lg:px-20 lg:py-24 text-center">
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="w-[500px] h-[300px] bg-amber-500/10 rounded-full blur-[90px]"></div>
+        </div>
+        <div class="absolute top-0 left-0 w-24 h-24 border-t-2 border-l-2 border-amber-400/20 rounded-tl-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-24 h-24 border-b-2 border-r-2 border-amber-400/20 rounded-br-3xl pointer-events-none"></div>
+        <div class="relative z-10 max-w-3xl mx-auto">
+          <p class="text-amber-400 text-xs font-bold uppercase tracking-[0.2em] mb-5">Commencez dès aujourd'hui</p>
+          <h2 class="font-display text-4xl sm:text-5xl lg:text-[3.8rem] font-light text-white leading-[1.1] tracking-tight mb-6">
+            Prêt à transformer<br><em class="not-italic font-semibold text-amber-400">votre façon de travailler&nbsp;?</em>
+          </h2>
+          <p class="text-slate-400 text-base sm:text-lg max-w-xl mx-auto mb-10 leading-relaxed">
+            Rejoignez des milliers d'équipes qui ont franchi le cap. 14 jours d'essai gratuit, sans carte bancaire, sans engagement.
+          </p>
+          <div class="flex flex-wrap items-center justify-center gap-4">
+            <a href="#" class="inline-flex items-center gap-2 bg-amber-400 hover:bg-amber-300 text-slate-900 font-semibold text-sm px-8 py-4 rounded-full transition-all duration-200 shadow-xl shadow-amber-400/30 hover:shadow-amber-400/50 hover:-translate-y-0.5">
+              Créer mon espace gratuit
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+            </a>
+            <a href="#" class="inline-flex items-center gap-2 text-slate-400 hover:text-white font-medium text-sm transition-colors">
+              Voir les tarifs <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+          <div class="flex flex-wrap items-center justify-center gap-6 mt-10 text-xs text-slate-600">
+            <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Aucune carte requise</span>
+            <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Annulation à tout moment</span>
+            <span class="flex items-center gap-1.5"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>Support 24/7</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="a-propos" class="border-t border-white/5 pt-16 pb-10">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-10 mb-14">
+        <div class="col-span-2 lg:col-span-2">
+          <a href="#" class="font-display text-[1.6rem] font-semibold text-amber-400">LOOM</a>
+          <p class="mt-4 text-sm text-slate-500 max-w-[260px] leading-relaxed">L'espace de travail visuel pour les équipes qui créent des choses extraordinaires.</p>
+          <div class="flex gap-2.5 mt-6">
+            <a href="#" aria-label="X / Twitter" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-all">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-all">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="#" aria-label="GitHub" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-all">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.929.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div id="blog">
+          <h4 class="text-[11px] font-bold text-white uppercase tracking-[0.15em] mb-4">Produit</h4>
+          <ul class="space-y-3">
+            <li><a href="#fonctionnalites" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Fonctionnalités</a></li>
+            <li><a href="#tarifs"          class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Tarifs</a></li>
+            <li><a href="#"               class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Changelog</a></li>
+            <li><a href="#"               class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Roadmap</a></li>
+            <li><a href="#"               class="text-sm text-slate-500 hover:text-slate-200 transition-colors">API & Intégrations</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold text-white uppercase tracking-[0.15em] mb-4">Société</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">À propos</a></li>
+            <li><a href="#" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Blog</a></li>
+            <li><a href="#" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Carrières</a></li>
+            <li><a href="#" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-[11px] font-bold text-white uppercase tracking-[0.15em] mb-4">Légal</h4>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Confidentialité</a></li>
+            <li><a href="#" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">CGU</a></li>
+            <li><a href="#" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Cookies</a></li>
+            <li><a href="#" class="text-sm text-slate-500 hover:text-slate-200 transition-colors">Sécurité</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-xs text-slate-700">© 2025 Loom Technologies SAS. Tous droits réservés.</p>
+        <p class="text-xs text-slate-700">Conçu et développé avec ❤️ à Paris, France</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    // Header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        header.classList.add('bg-[#07070f]/85', 'backdrop-blur-2xl', 'shadow-lg', 'shadow-black/30', 'border-b', 'border-white/5');
+      } else {
+        header.classList.remove('bg-[#07070f]/85', 'backdrop-blur-2xl', 'shadow-lg', 'shadow-black/30', 'border-b', 'border-white/5');
+      }
+    }, { passive: true });
+
+    // Menu hamburger
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const bar1 = document.getElementById('bar1');
+    const bar2 = document.getElementById('bar2');
+    const bar3 = document.getElementById('bar3');
+    let menuOpen = false;
+
+    hamburger.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      mobileMenu.classList.toggle('hidden', !menuOpen);
+      if (menuOpen) {
+        bar1.style.transform = 'rotate(45deg) translate(3px, 3.5px)';
+        bar2.style.opacity = '0';
+        bar3.style.transform = 'rotate(-45deg) translate(3px, -3.5px)';
+      } else {
+        bar1.style.transform = '';
+        bar2.style.opacity = '';
+        bar3.style.transform = '';
+      }
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        mobileMenu.classList.add('hidden');
+        bar1.style.transform = '';
+        bar2.style.opacity = '';
+        bar3.style.transform = '';
+      });
+    });
+
+    // Fade-up au scroll via IntersectionObserver
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const delay = el.dataset.delay || '0s';
+          el.style.animationDelay = delay;
+          el.style.animation = `fadeUp 0.7s ease ${delay} forwards`;
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.opacity-0').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
