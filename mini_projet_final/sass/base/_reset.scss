@@ -1,0 +1,100 @@
+@use '../abstracts/variables' as v;
+
+// =============================================================================
+// BASE – Reset & Normalize
+// =============================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: v.$font-primary;
+  font-size: v.$fs-base;
+  line-height: 1.6;
+  color: v.$color-text;
+  background-color: v.$color-bg;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color v.$transition-base, color v.$transition-base;
+}
+
+// --- Light mode ---
+[data-theme="light"] body,
+body[data-theme="light"] {
+  color: v.$color-text-light;
+  background-color: v.$color-bg-light;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+a {
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+// --- Keyframes globaux ---
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(108,99,255, 0.4); }
+  70%  { transform: scale(1);   box-shadow: 0 0 0 16px rgba(108,99,255, 0); }
+  100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(108,99,255, 0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+@keyframes gradientShift {
+  0%   { background-position: 0%   50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0%   50%; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

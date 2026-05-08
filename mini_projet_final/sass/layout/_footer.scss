@@ -1,0 +1,125 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+// =============================================================================
+// LAYOUT – Footer
+// =============================================================================
+
+.footer {
+  background: darken(v.$color-bg, 2%);
+  border-top: 1px solid v.$color-border;
+  padding-block: v.$space-16;
+
+  .container {
+    @include m.container;
+  }
+}
+
+[data-theme="light"] .footer {
+  background: darken(v.$color-bg-light, 2%);
+  border-top-color: v.$color-border-light;
+}
+
+.footer__grid {
+  display: grid;
+  gap: v.$space-12;
+
+  @include m.respond-to('md') {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: v.$space-8;
+  }
+}
+
+.footer__brand {
+  .footer__desc {
+    font-size: v.$fs-sm;
+    color: v.$color-text-muted;
+    line-height: 1.8;
+    margin-block: v.$space-4;
+    max-width: 30ch;
+  }
+
+  .footer__socials {
+    display: flex;
+    gap: v.$space-3;
+    margin-top: v.$space-4;
+
+    a {
+      width: 36px;
+      height: 36px;
+      border-radius: v.$radius-md;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid v.$color-border;
+      @include m.flex-center;
+      color: v.$color-text-muted;
+      text-decoration: none;
+      transition: all v.$transition-base;
+
+      svg {
+        width: 16px;
+        height: 16px;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 2;
+      }
+
+      &:hover {
+        background: rgba(v.$color-primary, 0.1);
+        border-color: v.$color-primary;
+        color: v.$color-primary;
+      }
+    }
+  }
+}
+
+[data-theme="light"] .footer__brand .footer__desc { color: v.$color-text-muted-light; }
+
+.footer__col {
+  h4 {
+    font-size: v.$fs-sm;
+    font-weight: v.$fw-semibold;
+    color: v.$color-text-heading;
+    margin-bottom: v.$space-4;
+    letter-spacing: 0.03em;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-3;
+  }
+
+  a {
+    font-size: v.$fs-sm;
+    color: v.$color-text-muted;
+    text-decoration: none;
+    transition: color v.$transition-fast;
+
+    &:hover { color: v.$color-primary; }
+  }
+}
+
+[data-theme="light"] {
+  .footer__col h4 { color: v.$color-text-heading-light; }
+  .footer__col a { color: v.$color-text-muted-light; }
+}
+
+.footer__bottom {
+  margin-top: v.$space-12;
+  padding-top: v.$space-6;
+  border-top: 1px solid v.$color-border;
+  @include m.flex-between;
+  flex-wrap: wrap;
+  gap: v.$space-4;
+
+  p {
+    font-size: v.$fs-xs;
+    color: v.$color-text-muted;
+    max-width: none;
+  }
+}
+
+[data-theme="light"] .footer__bottom {
+  border-top-color: v.$color-border-light;
+  p { color: v.$color-text-muted-light; }
+}

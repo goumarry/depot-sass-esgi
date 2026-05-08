@@ -1,0 +1,13 @@
+{
+  "name": "innovatech-solutions",
+  "version": "1.0.0",
+  "description": "Site vitrine Innovatech Solutions – mini-projet CSS M1",
+  "scripts": {
+    "sass": "sass sass/main.scss css/main.css --style=compressed",
+    "sass:watch": "sass sass/main.scss css/main.css --watch",
+    "build": "sass sass/main.scss css/main.css --style=compressed"
+  },
+  "devDependencies": {
+    "sass": "^1.77.0"
+  }
+}

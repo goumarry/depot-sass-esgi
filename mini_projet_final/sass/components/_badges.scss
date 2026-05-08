@@ -1,0 +1,51 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+// =============================================================================
+// COMPONENTS – Badges / Tags
+// =============================================================================
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-1;
+  font-size: v.$fs-xs;
+  font-weight: v.$fw-semibold;
+  letter-spacing: 0.04em;
+  padding: v.$space-1 v.$space-3;
+  border-radius: v.$radius-full;
+}
+
+.badge--primary {
+  background: rgba(v.$color-primary, 0.15);
+  color: v.$color-primary;
+  border: 1px solid rgba(v.$color-primary, 0.25);
+}
+
+.badge--secondary {
+  background: rgba(v.$color-secondary, 0.15);
+  color: v.$color-secondary;
+  border: 1px solid rgba(v.$color-secondary, 0.25);
+}
+
+.badge--accent {
+  background: rgba(v.$color-accent, 0.15);
+  color: v.$color-accent;
+  border: 1px solid rgba(v.$color-accent, 0.25);
+}
+
+// Point de statut animé
+.badge--live {
+  background: rgba(#4ade80, 0.15);
+  color: #4ade80;
+  border: 1px solid rgba(#4ade80, 0.25);
+
+  &::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4ade80;
+    animation: pulse-ring 2s infinite;
+  }
+}

@@ -1,0 +1,140 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+// =============================================================================
+// SECTION – Médias / Ils parlent de nous
+// =============================================================================
+
+.medias {
+  @include m.section-padding;
+  position: relative;
+  background: rgba(v.$color-surface, 0.3);
+
+  // Bande de séparation supérieure
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, v.$color-border, transparent);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, v.$color-border, transparent);
+  }
+}
+
+[data-theme="light"] .medias {
+  background: rgba(v.$color-surface-light, 0.4);
+
+  &::before,
+  &::after {
+    background: linear-gradient(90deg, transparent, v.$color-border-light, transparent);
+  }
+}
+
+// --- Bandeau logos ---
+.medias__logos {
+  overflow: hidden;
+  padding-block: v.$space-8;
+  margin-bottom: v.$space-12;
+  position: relative;
+
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &::before {
+    left: 0;
+    background: linear-gradient(to right, v.$color-bg, transparent);
+  }
+
+  &::after {
+    right: 0;
+    background: linear-gradient(to left, v.$color-bg, transparent);
+  }
+}
+
+[data-theme="light"] .medias__logos {
+  &::before { background: linear-gradient(to right, v.$color-bg-light, transparent); }
+  &::after  { background: linear-gradient(to left,  v.$color-bg-light, transparent); }
+}
+
+.medias__logos-track {
+  display: flex;
+  gap: v.$space-12;
+  animation: marquee 25s linear infinite;
+  width: max-content;
+
+  &:hover { animation-play-state: paused; }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.medias__logo-item {
+  display: flex;
+  align-items: center;
+  gap: v.$space-3;
+  white-space: nowrap;
+  color: v.$color-text-muted;
+  font-family: v.$font-heading;
+  font-size: v.$fs-md;
+  font-weight: v.$fw-bold;
+  opacity: 0.45;
+  transition: opacity v.$transition-base;
+  cursor: default;
+
+  &:hover { opacity: 0.85; }
+
+  .logo-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: v.$color-primary;
+    opacity: 0.5;
+  }
+}
+
+// --- Grille articles presse ---
+.medias__grid {
+  display: grid;
+  gap: v.$space-6;
+  grid-template-columns: 1fr;
+
+  @include m.respond-to('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Carte article vedette (pleine largeur sur mobile, 2 colonnes sur tablette)
+.media-card--featured {
+  @include m.respond-to('sm') {
+    grid-column: span 2;
+  }
+
+  @include m.respond-to('lg') {
+    grid-column: span 1;
+  }
+}

@@ -1,0 +1,51 @@
+@use 'variables' as v;
+
+// =============================================================================
+// ABSTRACTS – Fonctions Sass
+// =============================================================================
+
+/// Convertit des pixels en rem (base 16px)
+/// @param {Number} $px - valeur en pixels
+/// @return {Number} - valeur en rem
+@function rem($px) {
+  @return calc($px / 16) * 1rem;
+}
+
+/// Calcule le ratio de contraste entre deux couleurs (approximation)
+/// Renvoie true si le contraste est suffisant (≥ 4.5 pour AA)
+/// @param {Color} $fg - couleur de premier plan
+/// @param {Color} $bg - couleur d'arrière-plan
+/// @return {Boolean}
+@function luminance($color) {
+  $r: red($color) / 255;
+  $g: green($color) / 255;
+  $b: blue($color) / 255;
+
+  $r: if($r <= 0.03928, $r / 12.92, pow(($r + 0.055) / 1.055, 2.4));
+  $g: if($g <= 0.03928, $g / 12.92, pow(($g + 0.055) / 1.055, 2.4));
+  $b: if($b <= 0.03928, $b / 12.92, pow(($b + 0.055) / 1.055, 2.4));
+
+  @return 0.2126 * $r + 0.7152 * $g + 0.0722 * $b;
+}
+
+@function contrast-ratio($fg, $bg) {
+  $lum-fg: luminance($fg);
+  $lum-bg: luminance($bg);
+  $lighter: max($lum-fg, $lum-bg);
+  $darker:  min($lum-fg, $lum-bg);
+  @return ($lighter + 0.05) / ($darker + 0.05);
+}
+
+/// Retourne une couleur de texte lisible sur un fond donné
+@function readable-color($bg) {
+  $ratio-white: contrast-ratio(#ffffff, $bg);
+  $ratio-dark:  contrast-ratio(#0d0e1a, $bg);
+  @return if($ratio-white >= $ratio-dark, #ffffff, #0d0e1a);
+}
+
+/// Clamp fluid typography
+/// @param {Number} $min - taille min (px)
+/// @param {Number} $max - taille max (px)
+@function fluid($min, $max) {
+  @return clamp(#{rem($min)}, #{rem($min)} + 1vw, #{rem($max)});
+}

@@ -1,0 +1,105 @@
+// =============================================================================
+// MAIN – Point d'entrée Sass (7-1 pattern simplifié)
+// =============================================================================
+//
+// Ordre d'import : Abstracts → Base → Layout → Components → Sections → Themes
+// Les abstracts sont importés via @use dans chaque partial,
+// ici on assemble seulement les partials qui génèrent du CSS.
+
+// 1. Base
+@use 'base/reset';
+@use 'base/typography';
+
+// 2. Layout
+@use 'layout/header';
+@use 'layout/footer';
+
+// 3. Components
+@use 'components/buttons';
+@use 'components/cards';
+@use 'components/badges';
+
+// 4. Sections
+@use 'sections/hero';
+@use 'sections/services';
+@use 'sections/medias';
+@use 'sections/about';
+
+// =============================================================================
+// UTILITAIRES GLOBAUX
+// =============================================================================
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.visually-hidden { @extend .sr-only; }
+
+// Observateur d'intersection (fade-in)
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Spacer
+.spacer { flex: 1; }
+
+// Divider
+.divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border, #2a2d52), transparent);
+  margin-block: 2rem;
+}
+
+// Focus visible pour accessibilité clavier
+:focus-visible {
+  outline: 2px solid #6c63ff;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+// Scrollbar custom
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0e1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2a2d52;
+  border-radius: 4px;
+
+  &:hover { background: #6c63ff; }
+}
+
+[data-theme="light"] {
+  ::-webkit-scrollbar-track { background: #f5f5ff; }
+  ::-webkit-scrollbar-thumb { background: #ddd9f9; }
+}

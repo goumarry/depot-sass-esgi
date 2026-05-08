@@ -1,0 +1,168 @@
+@use 'variables' as v;
+
+// =============================================================================
+// ABSTRACTS – Mixins
+// =============================================================================
+
+/// Responsive breakpoint
+/// @param {String} $bp - 'sm' | 'md' | 'lg' | 'xl'
+@mixin respond-to($bp) {
+  @if $bp == 'sm' {
+    @media (min-width: v.$bp-sm) { @content; }
+  } @else if $bp == 'md' {
+    @media (min-width: v.$bp-md) { @content; }
+  } @else if $bp == 'lg' {
+    @media (min-width: v.$bp-lg) { @content; }
+  } @else if $bp == 'xl' {
+    @media (min-width: v.$bp-xl) { @content; }
+  }
+}
+
+/// Flexbox centré
+@mixin flex-center($dir: row) {
+  display: flex;
+  flex-direction: $dir;
+  align-items: center;
+  justify-content: center;
+}
+
+/// Flex entre les éléments
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/// Élévation carte au survol
+@mixin card-hover {
+  transition: transform v.$transition-base, box-shadow v.$transition-base, background-color v.$transition-base;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: v.$shadow-primary;
+  }
+}
+
+/// Bouton de base
+/// @param {Color} $bg      - couleur de fond
+/// @param {Color} $color   - couleur du texte
+/// @param {Boolean} $outline - mode outline
+@mixin button-style($bg: v.$color-primary, $color: #fff, $outline: false) {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-2;
+  padding: v.$space-3 v.$space-6;
+  border-radius: v.$radius-full;
+  font-family: v.$font-primary;
+  font-weight: v.$fw-semibold;
+  font-size: v.$fs-sm;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all v.$transition-base;
+  letter-spacing: 0.02em;
+
+  @if $outline {
+    background: transparent;
+    color: $bg;
+    border: 2px solid $bg;
+
+    &:hover {
+      background: $bg;
+      color: $color;
+      box-shadow: 0 4px 16px rgba($bg, 0.3);
+    }
+  } @else {
+    background: $bg;
+    color: $color;
+    border: 2px solid transparent;
+
+    &:hover {
+      background: darken($bg, 8%);
+      box-shadow: 0 4px 16px rgba($bg, 0.4);
+      transform: translateY(-2px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+/// Gradient de texte
+/// @param {Color} $from
+/// @param {Color} $to
+@mixin gradient-text($from: v.$color-primary, $to: v.$color-accent) {
+  background: linear-gradient(135deg, $from, $to);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/// Conteneur centré avec max-width
+@mixin container($max: 1200px) {
+  width: 100%;
+  max-width: $max;
+  margin-inline: auto;
+  padding-inline: v.$space-6;
+
+  @include respond-to('md') {
+    padding-inline: v.$space-8;
+  }
+}
+
+/// Glass morphism
+@mixin glassmorphism($opacity: 0.08) {
+  background: rgba(255, 255, 255, $opacity);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/// Section padding
+@mixin section-padding {
+  padding-block: v.$space-20;
+
+  @include respond-to('md') {
+    padding-block: v.$space-24;
+  }
+}
+
+/// Icône dans un cercle coloré
+@mixin icon-circle($size: 56px, $bg: v.$color-primary) {
+  width: $size;
+  height: $size;
+  border-radius: v.$radius-full;
+  background: rgba($bg, 0.15);
+  @include flex-center;
+  flex-shrink: 0;
+  transition: background v.$transition-base;
+}
+
+/// Animation fade-in au scroll
+@mixin fade-in-up($delay: 0s) {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: $delay;
+}
+
+/// Underline animé sur les liens
+@mixin animated-underline($color: v.$color-primary) {
+  position: relative;
+  text-decoration: none;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: $color;
+    transition: width v.$transition-base;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+}

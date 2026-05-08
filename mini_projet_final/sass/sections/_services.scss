@@ -1,0 +1,135 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+// =============================================================================
+// SECTION – Nos Services
+// =============================================================================
+
+.services {
+  @include m.section-padding;
+  position: relative;
+  overflow: hidden;
+
+  // Dégradé d'arrière-plan subtil
+  &::before {
+    content: '';
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(v.$color-accent, 0.08) 0%, transparent 70%);
+    right: -150px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+}
+
+.section__container {
+  @include m.container;
+}
+
+// --- En-tête de section ---
+.section__header {
+  text-align: center;
+  margin-bottom: v.$space-16;
+
+  h2 { margin-bottom: v.$space-4; }
+
+  p {
+    margin-inline: auto;
+    font-size: v.$fs-md;
+    max-width: 55ch;
+  }
+}
+
+// --- Grille de services ---
+.services__grid {
+  display: grid;
+  gap: v.$space-6;
+  grid-template-columns: 1fr;
+
+  @include m.respond-to('sm') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include m.respond-to('lg') {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// --- Carte de service (extend du composant .card) ---
+.service-card {
+  display: flex;
+  flex-direction: column;
+
+  // Badge optionnel
+  &[data-badge] {
+    &::after {
+      content: attr(data-badge);
+      position: absolute;
+      top: v.$space-4;
+      right: v.$space-4;
+      font-size: v.$fs-xs;
+      font-weight: v.$fw-semibold;
+      padding: 2px v.$space-3;
+      border-radius: v.$radius-full;
+      background: rgba(v.$color-secondary, 0.15);
+      color: v.$color-secondary;
+    }
+  }
+}
+
+// Tag de catégorie
+.service-card__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-1;
+  font-size: v.$fs-xs;
+  color: v.$color-text-muted;
+  margin-bottom: v.$space-3;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+[data-theme="light"] .service-card__tag { color: v.$color-text-muted-light; }
+
+// Barre de progression simulée
+.service-card__progress {
+  margin-top: auto;
+  padding-top: v.$space-6;
+
+  label {
+    display: flex;
+    justify-content: space-between;
+    font-size: v.$fs-xs;
+    color: v.$color-text-muted;
+    margin-bottom: v.$space-2;
+  }
+
+  .progress-bar {
+    height: 4px;
+    background: rgba(255,255,255,0.06);
+    border-radius: v.$radius-full;
+    overflow: hidden;
+
+    span {
+      display: block;
+      height: 100%;
+      border-radius: v.$radius-full;
+      background: linear-gradient(90deg, v.$color-primary, v.$color-accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+}
+
+[data-theme="light"] .service-card__progress {
+  label { color: v.$color-text-muted-light; }
+  .progress-bar { background: rgba(0,0,0,0.06); }
+}
+
+.services__grid.in-view .service-card__progress .progress-bar span {
+  transform: scaleX(1);
+}

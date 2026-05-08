@@ -1,0 +1,168 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+// =============================================================================
+// SECTION – Hero (Accueil)
+// =============================================================================
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  @include m.flex-center(column);
+  text-align: center;
+  padding-top: calc(v.$navbar-height + v.$space-12);
+  padding-bottom: v.$space-20;
+  overflow: hidden;
+
+  // Background orbs dégradés
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  &::before {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(v.$color-primary, 0.35) 0%, transparent 70%);
+    top: -100px;
+    left: -200px;
+    animation: float 8s ease-in-out infinite;
+  }
+
+  &::after {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(v.$color-accent, 0.25) 0%, transparent 70%);
+    bottom: 0;
+    right: -100px;
+    animation: float 10s ease-in-out infinite reverse;
+  }
+}
+
+.hero__container {
+  @include m.container;
+  position: relative;
+  z-index: 1;
+  @include m.flex-center(column);
+  gap: v.$space-6;
+}
+
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-2;
+  padding: v.$space-2 v.$space-4;
+  background: rgba(v.$color-primary, 0.1);
+  border: 1px solid rgba(v.$color-primary, 0.25);
+  border-radius: v.$radius-full;
+  font-size: v.$fs-xs;
+  font-weight: v.$fw-semibold;
+  color: v.$color-primary;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.hero__title {
+  max-width: 14ch;
+  animation: fadeInUp 0.6s 0.1s ease both;
+
+  span {
+    display: block;
+    @include m.gradient-text(v.$color-primary, v.$color-accent);
+  }
+}
+
+.hero__subtitle {
+  max-width: 55ch;
+  text-align: center;
+  font-size: clamp(#{v.$fs-base}, 1.5vw + 0.2rem, #{v.$fs-md});
+  animation: fadeInUp 0.6s 0.2s ease both;
+}
+
+.hero__ctas {
+  display: flex;
+  align-items: center;
+  gap: v.$space-4;
+  flex-wrap: wrap;
+  justify-content: center;
+  animation: fadeInUp 0.6s 0.3s ease both;
+}
+
+// Statistiques rapides
+.hero__stats {
+  display: flex;
+  gap: v.$space-8;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: v.$space-8;
+  animation: fadeInUp 0.6s 0.4s ease both;
+}
+
+.hero__stat {
+  text-align: center;
+
+  strong {
+    display: block;
+    font-family: v.$font-heading;
+    font-size: v.$fs-2xl;
+    font-weight: v.$fw-bold;
+    @include m.gradient-text;
+  }
+
+  span {
+    font-size: v.$fs-xs;
+    color: v.$color-text-muted;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+}
+
+[data-theme="light"] .hero__stat span { color: v.$color-text-muted-light; }
+
+// Scroll indicator
+.hero__scroll {
+  position: absolute;
+  bottom: v.$space-8;
+  left: 50%;
+  transform: translateX(-50%);
+  @include m.flex-center(column);
+  gap: v.$space-2;
+  color: v.$color-text-muted;
+  font-size: v.$fs-xs;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  animation: fadeInUp 0.6s 0.6s ease both;
+
+  &::after {
+    content: '';
+    width: 1px;
+    height: 48px;
+    background: linear-gradient(to bottom, v.$color-primary, transparent);
+    animation: float 2s ease-in-out infinite;
+  }
+}
+
+// Grille hero orb animé
+.hero__grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(v.$color-primary, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(v.$color-primary, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+}
+
+[data-theme="light"] {
+  .hero__grid-bg {
+    background-image:
+      linear-gradient(rgba(v.$color-primary, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(v.$color-primary, 0.05) 1px, transparent 1px);
+  }
+}

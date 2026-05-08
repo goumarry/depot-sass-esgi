@@ -1,0 +1,339 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+// =============================================================================
+// SECTION – À propos
+// =============================================================================
+
+.about {
+  @include m.section-padding;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(v.$color-primary, 0.07) 0%, transparent 70%);
+    left: -300px;
+    bottom: -200px;
+    pointer-events: none;
+  }
+}
+
+.about__inner {
+  @include m.container;
+  display: grid;
+  gap: v.$space-16;
+  align-items: center;
+
+  @include m.respond-to('lg') {
+    grid-template-columns: 1fr 1fr;
+    gap: v.$space-20;
+  }
+}
+
+// --- Colonne texte ---
+.about__content {
+  .section-label { margin-bottom: v.$space-4; }
+  h2 { margin-bottom: v.$space-6; }
+
+  p { margin-bottom: v.$space-4; }
+}
+
+// Liste de valeurs
+.about__values {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-4;
+  margin-block: v.$space-8;
+}
+
+.about__value {
+  display: flex;
+  align-items: flex-start;
+  gap: v.$space-4;
+
+  .value-icon {
+    @include m.icon-circle(44px, v.$color-primary);
+    flex-shrink: 0;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      stroke: v.$color-primary;
+      fill: none;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+  }
+
+  .value-text {
+    h4 {
+      font-size: v.$fs-base;
+      font-weight: v.$fw-semibold;
+      color: v.$color-text-heading;
+      margin-bottom: v.$space-1;
+    }
+
+    p {
+      font-size: v.$fs-sm;
+      color: v.$color-text-muted;
+      margin-bottom: 0;
+    }
+  }
+}
+
+[data-theme="light"] {
+  .about__value .value-text h4 { color: v.$color-text-heading-light; }
+  .about__value .value-text p  { color: v.$color-text-muted-light; }
+}
+
+.about__ctas {
+  display: flex;
+  align-items: center;
+  gap: v.$space-4;
+  flex-wrap: wrap;
+  margin-top: v.$space-8;
+}
+
+// --- Colonne visuelle ---
+.about__visual {
+  position: relative;
+}
+
+.about__card-stack {
+  position: relative;
+  height: 480px;
+
+  @include m.respond-to('md') {
+    height: 520px;
+  }
+}
+
+// Carte principale
+.about__main-card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  @include m.glassmorphism(0.06);
+  border-radius: v.$radius-xl;
+  padding: v.$space-8;
+  border: 1px solid v.$color-border;
+
+  .about-card__header {
+    @include m.flex-between;
+    margin-bottom: v.$space-6;
+
+    .about-card__avatar {
+      width: 52px;
+      height: 52px;
+      border-radius: v.$radius-full;
+      background: linear-gradient(135deg, v.$color-primary, v.$color-accent);
+      @include m.flex-center;
+      font-family: v.$font-heading;
+      font-weight: v.$fw-bold;
+      color: #fff;
+      font-size: v.$fs-md;
+    }
+
+
+  }
+
+  h3 {
+    font-size: v.$fs-lg;
+    color: v.$color-text-heading;
+    margin-bottom: v.$space-2;
+  }
+
+  p {
+    font-size: v.$fs-sm;
+    color: v.$color-text-muted;
+    margin-bottom: v.$space-6;
+  }
+}
+
+[data-theme="light"] {
+  .about__main-card {
+    background: rgba(255, 255, 255, 0.7);
+    border-color: v.$color-border-light;
+    h3 { color: v.$color-text-heading-light; }
+    p  { color: v.$color-text-muted-light;  }
+  }
+}
+
+// Métriques dans la carte
+.about-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: v.$space-4;
+
+  .metric {
+    text-align: center;
+    padding: v.$space-4;
+    background: rgba(v.$color-primary, 0.06);
+    border-radius: v.$radius-md;
+
+    strong {
+      display: block;
+      font-family: v.$font-heading;
+      font-size: v.$fs-xl;
+      @include m.gradient-text;
+    }
+
+    span {
+      font-size: v.$fs-xs;
+      color: v.$color-text-muted;
+    }
+  }
+}
+
+[data-theme="light"] .about-metrics .metric {
+  background: rgba(v.$color-primary, 0.07);
+  span { color: v.$color-text-muted-light; }
+}
+
+// Cartes flottantes secondaires
+.about__float-card {
+  position: absolute;
+  padding: v.$space-4 v.$space-6;
+  @include m.glassmorphism(0.08);
+  border-radius: v.$radius-lg;
+  border: 1px solid v.$color-border;
+  animation: float 6s ease-in-out infinite;
+
+  &--tech {
+    bottom: v.$space-24;
+    right: 0;
+    animation-delay: -2s;
+    animation-duration: 7s;
+
+    .float-card__label {
+      font-size: v.$fs-xs;
+      color: v.$color-text-muted;
+      margin-bottom: v.$space-2;
+    }
+
+    .float-card__stack {
+      display: flex;
+      gap: v.$space-2;
+    }
+
+    .tech-pill {
+      font-size: v.$fs-xs;
+      font-weight: v.$fw-semibold;
+      padding: 3px v.$space-3;
+      border-radius: v.$radius-full;
+      background: rgba(v.$color-primary, 0.12);
+      color: v.$color-primary;
+    }
+  }
+
+  &--metric {
+    bottom: 0;
+    left: v.$space-6;
+    animation-delay: -4s;
+    @include m.flex-center;
+    gap: v.$space-3;
+
+    svg {
+      width: 24px;
+      height: 24px;
+      stroke: v.$color-accent;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    span {
+      font-size: v.$fs-sm;
+      font-weight: v.$fw-semibold;
+      color: v.$color-text;
+    }
+  }
+}
+
+[data-theme="light"] {
+  .about__float-card {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: v.$color-border-light;
+  }
+
+  .about__float-card--metric span { color: v.$color-text-light; }
+}
+
+// --- Section équipe (sous-section) ---
+.about__team {
+  @include m.container;
+  margin-top: v.$space-20;
+
+  h3 {
+    text-align: center;
+    margin-bottom: v.$space-12;
+  }
+}
+
+.about__team-grid {
+  display: grid;
+  gap: v.$space-6;
+  grid-template-columns: repeat(2, 1fr);
+
+  @include m.respond-to('md') {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.team-card {
+  text-align: center;
+  padding: v.$space-6;
+  background: v.$color-bg-card;
+  border: 1px solid v.$color-border;
+  border-radius: v.$radius-lg;
+  transition: all v.$transition-base;
+
+  &:hover {
+    border-color: rgba(v.$color-primary, 0.35);
+    transform: translateY(-4px);
+    box-shadow: v.$shadow-md;
+  }
+
+  .team-card__avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: v.$radius-full;
+    margin-inline: auto;
+    margin-bottom: v.$space-4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: v.$font-heading;
+    font-size: v.$fs-xl;
+    font-weight: v.$fw-bold;
+    color: #fff;
+  }
+
+  .team-card__name {
+    font-size: v.$fs-sm;
+    font-weight: v.$fw-semibold;
+    color: v.$color-text-heading;
+    margin-bottom: v.$space-1;
+  }
+
+  .team-card__role {
+    font-size: v.$fs-xs;
+    color: v.$color-primary;
+    font-weight: v.$fw-medium;
+  }
+}
+
+[data-theme="light"] {
+  .team-card {
+    background: v.$color-bg-card-light;
+    border-color: v.$color-border-light;
+
+    .team-card__name { color: v.$color-text-heading-light; }
+  }
+}

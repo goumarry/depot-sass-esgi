@@ -1,0 +1,77 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+// =============================================================================
+// COMPONENTS – Boutons
+// =============================================================================
+
+.btn {
+  @include m.button-style;
+}
+
+.btn--primary {
+  @include m.button-style(v.$color-primary, #fff);
+}
+
+.btn--secondary {
+  @include m.button-style(v.$color-secondary, #fff);
+}
+
+.btn--outline {
+  @include m.button-style(v.$color-primary, #fff, $outline: true);
+}
+
+.btn--ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-2;
+  padding: v.$space-3 v.$space-6;
+  border-radius: v.$radius-full;
+  font-size: v.$fs-sm;
+  font-weight: v.$fw-semibold;
+  color: v.$color-text-muted;
+  background: transparent;
+  border: 1px solid v.$color-border;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all v.$transition-base;
+
+  &:hover {
+    border-color: v.$color-primary;
+    color: v.$color-primary;
+    background: rgba(v.$color-primary, 0.05);
+  }
+}
+
+[data-theme="light"] .btn--ghost {
+  border-color: v.$color-border-light;
+  color: v.$color-text-muted-light;
+
+  &:hover {
+    border-color: v.$color-primary;
+    color: v.$color-primary;
+    background: rgba(v.$color-primary, 0.06);
+  }
+}
+
+// Flèche sur les liens
+.btn--link {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-2;
+  font-size: v.$fs-sm;
+  font-weight: v.$fw-semibold;
+  color: v.$color-primary;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: gap v.$transition-fast;
+
+  svg { transition: transform v.$transition-fast; }
+
+  &:hover {
+    gap: v.$space-3;
+    svg { transform: translateX(4px); }
+  }
+}

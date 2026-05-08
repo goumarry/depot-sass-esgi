@@ -1,0 +1,217 @@
+@use '../abstracts/variables' as v;
+@use '../abstracts/mixins' as m;
+
+// =============================================================================
+// LAYOUT – Header / Navigation
+// =============================================================================
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  height: v.$navbar-height;
+  @include m.flex-between;
+  padding-inline: v.$space-6;
+  transition: background v.$transition-base, border-color v.$transition-base, box-shadow v.$transition-base;
+
+  @include m.respond-to('md') {
+    padding-inline: v.$space-12;
+  }
+
+  // Etat scrolled
+  &.scrolled {
+    @include m.glassmorphism(0.06);
+    border-bottom: 1px solid v.$color-border;
+    box-shadow: v.$shadow-sm;
+  }
+}
+
+[data-theme="light"] .header.scrolled {
+  background: rgba(245, 245, 255, 0.85);
+  border-bottom-color: v.$color-border-light;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: v.$space-3;
+  text-decoration: none;
+
+  .logo-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: v.$radius-md;
+    background: linear-gradient(135deg, v.$color-primary, v.$color-accent);
+    @include m.flex-center;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      stroke: #fff;
+      fill: none;
+      stroke-width: 2;
+    }
+  }
+
+  .logo-name {
+    font-family: v.$font-heading;
+    font-weight: v.$fw-bold;
+    font-size: v.$fs-md;
+    color: v.$color-text-heading;
+    letter-spacing: -0.01em;
+  }
+
+  .logo-name span {
+    @include m.gradient-text;
+  }
+}
+
+[data-theme="light"] .logo-name { color: v.$color-text-heading-light; }
+
+// --- Navigation ---
+.nav {
+  display: none;
+
+  @include m.respond-to('md') {
+    display: flex;
+    align-items: center;
+    gap: v.$space-8;
+  }
+}
+
+.nav__link {
+  font-size: v.$fs-sm;
+  font-weight: v.$fw-medium;
+  color: v.$color-text-muted;
+  text-decoration: none;
+  @include m.animated-underline(v.$color-primary);
+  transition: color v.$transition-fast;
+
+  &:hover,
+  &.active {
+    color: v.$color-text-heading;
+  }
+}
+
+[data-theme="light"] .nav__link {
+  color: v.$color-text-muted-light;
+  &:hover, &.active { color: v.$color-text-heading-light; }
+}
+
+// --- Actions header ---
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: v.$space-4;
+}
+
+// Bouton dark mode toggle
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border-radius: v.$radius-full;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid v.$color-border;
+  @include m.flex-center;
+  cursor: pointer;
+  transition: all v.$transition-base;
+  color: v.$color-text-muted;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  &:hover {
+    background: rgba(v.$color-primary, 0.1);
+    border-color: v.$color-primary;
+    color: v.$color-primary;
+  }
+}
+
+[data-theme="light"] .theme-toggle {
+  background: rgba(0,0,0,0.04);
+  border-color: v.$color-border-light;
+}
+
+// Mobile menu button
+.header__burger {
+  width: 40px;
+  height: 40px;
+  border-radius: v.$radius-md;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid v.$color-border;
+  @include m.flex-center;
+  cursor: pointer;
+  transition: all v.$transition-base;
+  flex-direction: column;
+  gap: 5px;
+
+  @include m.respond-to('md') {
+    display: none;
+  }
+
+  span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: v.$color-text;
+    border-radius: 2px;
+    transition: all v.$transition-base;
+  }
+
+  &.open {
+    span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    span:nth-child(2) { opacity: 0; }
+    span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+}
+
+[data-theme="light"] .header__burger {
+  background: rgba(0,0,0,0.04);
+  border-color: v.$color-border-light;
+  span { background: v.$color-text-light; }
+}
+
+// Mobile Nav overlay
+.mobile-nav {
+  position: fixed;
+  top: v.$navbar-height;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @include m.glassmorphism(0.1);
+  background: rgba(13,14,26,0.96);
+  z-index: 99;
+  @include m.flex-center(column);
+  gap: v.$space-8;
+  transform: translateX(-100%);
+  transition: transform v.$transition-slow;
+
+  &.open {
+    transform: translateX(0);
+  }
+
+  @include m.respond-to('md') {
+    display: none;
+  }
+
+  .nav__link {
+    font-size: v.$fs-xl;
+    font-weight: v.$fw-semibold;
+    color: v.$color-text;
+
+    &:hover { color: v.$color-primary; }
+  }
+}
+
+[data-theme="light"] .mobile-nav {
+  background: rgba(245, 245, 255, 0.97);
+}
